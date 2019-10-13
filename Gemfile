@@ -66,4 +66,10 @@ gem 'graphql', '1.7.7'
 gem 'graphiql-rails'
 gem 'annotate'
 
+group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'database_cleaner'
+end
+
 gem 'graphiql-rails', group: :development
