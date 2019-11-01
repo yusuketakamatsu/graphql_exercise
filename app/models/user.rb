@@ -16,4 +16,11 @@ class User < ApplicationRecord
   def test
     "hogehoge"
   end
+
+  def postsInDate
+    from = Time.current - 1.month
+    to = Time.current + 1.month
+
+    posts.where("created_at BETWEEN ? AND ?", from, to)
+  end
 end
