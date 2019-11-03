@@ -17,7 +17,7 @@ class User < ApplicationRecord
     "hogehoge"
   end
 
-  def postsInDate
+  def posts_in_date
     from = Time.current - 1.month
     to = Time.current + 1.month
 
