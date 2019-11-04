@@ -4,16 +4,26 @@ class Mutations::CreateUserMutation < Mutations::BaseMutation
   argument :name, String, required: true
   argument :email, String, required: true
 
-  field :user, Types::UserType, null: false
+  field :error, Types::ErrorType, null: false
 
   def resolve(name:, email:)
     begin
-      user = User.new(name: name, email: email)
-      user.save
+      existed_user = User.find_by(email: email)
+      message = ''
+
+      if existed_user
+        message = 'already exists the user.'
+      else
+        user = User.new(name: name, email: email)
+        user.save
+
+        user_information = UserInformation.new(user_id: user.id, detail: '')
+        user_information.save
+      end
     rescue => e
       return GraphQL::ExecutionError.new(e.message)
     end
 
-    { user: user}
+    { error: { message: message } }
   end
 end
