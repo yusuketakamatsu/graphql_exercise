@@ -5,9 +5,9 @@ module Types
     field :email, String, null: false
 
     field :test, String, null: false # method
-    field :posts_in_date, [Types::PostType], null: false
+    field :posts_in_date, [PostType], null: false
 
-    field :user_information, Types::UserInformationType, null: false
-    #connection :posts, Types::PostType.connection_type, null: false
+    field :user_information, UserInformationType, null: false
+    field :posts, PostType.connection_type, null: false
   end
 end

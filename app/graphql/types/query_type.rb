@@ -10,7 +10,7 @@ module Types
       "Hello World!"
     end
 
-    field :user, Types::UserType, null: false
+    field :user, UserType, null: false
     def user
       context[:current_user]
     end
