@@ -1,6 +1,7 @@
-Types::AddressType = GraphQL::ObjectType.define do
-  name "Address"
-  field :id, !types.ID
-  field :postal_code, !types.Int
-  field :address, !types.String
+module Types
+  class AddressType < Types::BaseObject
+    field :id, ID, null: false
+    field :postal_code, Int, null: false
+    field :address, String, null: false
+  end
 end

@@ -1,5 +1,6 @@
-Types::UserInformationType = GraphQL::ObjectType.define do
-  name "UserInformation"
-  field :id, !types.ID
-  field :detail, !types.String
+module Types
+  class UserInformationType < Types::BaseObject
+    field :id, ID, null: false
+    field :detail, String, null: false
+  end
 end
