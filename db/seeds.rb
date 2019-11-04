@@ -25,3 +25,23 @@ Post.create!(
   user_id: user.id,
   subject: 'test post 2.'
 )
+
+user = User.create!(
+  name: 'kz',
+  email: 'exapmle@gmail.com'
+)
+
+UserInformation.create!(
+  user_id: user.id,
+  detail: 'I ma kz.'
+)
+
+Post.create!(
+  user_id: user.id,
+  subject: 'test post 3.'
+)
+
+Post.create!(
+  user_id: user.id,
+  subject: 'test post 4.'
+)
