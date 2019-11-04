@@ -1,19 +1,19 @@
-Mutations::CreatePostMutation = GraphQL::Relay::Mutation.define do
-  name "CreatePostMutation"
+class Mutations::CreatePostMutation < Mutations::BaseMutation
+  null true
 
-  input_field :subject, !types.String
+  argument :subject, String, required: true
 
-  return_field :post, !Types::PostType
+  field :post, Types::PostType, null: false
 
-  resolve ->(obj, args, ctx) {
+  def resolve(subject:)
     begin
-      post = ctx[:current_user].posts.build
-      post.subject = args.subject
+      post = context[:current_user].posts.build
+      post.subject = subject
       post.save
     rescue => e
       return GraphQL::ExecutionError.new(e.message)
     end
 
     { post: post }
-  }
+  end
 end

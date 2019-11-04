@@ -1,15 +1,7 @@
 module Types
   class MutationType < Types::BaseObject
-    field :updatePostMutation, Mutations::UpdatePostMutation.field
-    field :createPostMutation, Mutations::CreatePostMutation.field
-    field :updateUserInformationMutation, Mutations::UpdateUserInformationMutation.field
-    
-    # TODO: Remove me
-    field :testField, types.String do
-      description "An example field added by the generator"
-      resolve ->(obj, args, ctx) {
-        "Hello World!"
-      }
-    end
+    field :update_post_mutation, mutation: Mutations::UpdatePostMutation
+    field :create_post_mutation, mutation: Mutations::CreatePostMutation
+    field :update_user_information_mutation, mutation: Mutations::UpdateUserInformationMutation
   end
 end

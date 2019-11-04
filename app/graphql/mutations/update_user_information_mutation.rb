@@ -1,19 +1,19 @@
-Mutations::UpdateUserInformationMutation = GraphQL::Relay::Mutation.define do
-  name "UpdateUserInformationMutation"
+class Mutations::UpdateUserInformationMutation < Mutations::BaseMutation
+  null true
 
-  input_field :detail, !types.String
+  argument :detail, String, required: true
 
-  return_field :user_information, !Types::UserInformationType
+  field :user_information, Types::UserInformationType, null: false
 
-  resolve ->(obj, args, ctx) {
+  def resolve(detail:)
     begin
-      user_information = ctx[:current_user].user_information
-      user_information.detail = args.detail
+      user_information = context[:current_user].user_information
+      user_information.detail = detail
       user_information.save
     rescue => e
       return GraphQL::ExecutionError.new(e.message)
     end
 
     { user_information: user_information}
-  }
+  end
 end
