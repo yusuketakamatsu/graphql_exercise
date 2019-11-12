@@ -10,9 +10,6 @@ module Types
       "Hello World!"
     end
 
-    field :user, UserType, null: false
-    def user
-      context[:current_user]
-    end
+    field :user, resolver: Resolvers::User
   end
 end
