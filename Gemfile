@@ -73,3 +73,5 @@ group :development, :test do
 end
 
 gem 'graphiql-rails', group: :development
+
+gem 'rack-cors'
