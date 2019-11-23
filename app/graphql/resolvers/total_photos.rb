@@ -3,7 +3,7 @@ module Resolvers
     type Integer, null: false
 
     def resolve
-      42
+      Photo.all.length
     end
   end
 end

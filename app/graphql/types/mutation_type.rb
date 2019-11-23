@@ -4,5 +4,7 @@ module Types
     field :create_post_mutation, mutation: Mutations::CreatePostMutation
     field :update_user_information_mutation, mutation: Mutations::UpdateUserInformationMutation
     field :create_user_mutation, mutation: Mutations::CreateUserMutation
+
+    field :postPhoto, mutation: Mutations::PostPhotoMutation
   end
 end
