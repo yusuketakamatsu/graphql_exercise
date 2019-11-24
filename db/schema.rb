@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_044753) do
+ActiveRecord::Schema.define(version: 2019_11_24_064015) do
+
+  create_table "photo_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "github_login"
+    t.string "name"
+    t.string "avatar"
+    t.bigint "photos_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photos_id"], name: "index_photo_users_on_photos_id"
+  end
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -19,6 +29,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_044753) do
     t.datetime "updated_at", null: false
     t.string "url"
     t.string "category", default: "PORTRAIT", null: false
+    t.bigint "photo_users_id"
+    t.index ["photo_users_id"], name: "index_photos_on_photo_users_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -43,4 +55,5 @@ ActiveRecord::Schema.define(version: 2019_11_24_044753) do
     t.string "url"
   end
 
+  add_foreign_key "photos", "photo_users", column: "photo_users_id"
 end
